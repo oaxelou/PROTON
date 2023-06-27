@@ -1,0 +1,1 @@
+pyinstaller --onefile  --paths "../../proton-venv/lib/python3.10/site-packages/" --hidden-import=simulation/simulation.py --icon=media/proton_logo.ico --windowed --noconsole --name=PROTON .\PROTON_main.py
