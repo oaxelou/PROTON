@@ -6,6 +6,15 @@ PROTON is an _open-source_ cross-platform EDA tool for  Electromigration (EM) as
 - It employs a complete set of accurate numerical and analytical techniques, that can significantly reduce the simulation complexity of large-scale EM problems. In particular, the analytical solution used for the line analysis is exact for the chosen spatial discretization guaranteeing a perfectly accurate and robust solution.
 - It is built with an easy-to-use interface, that allows the user to explore different EM stress scenarios, for multiple time stamps, providing plots for the physical structures of the power grid.
 
+## Table of Contents:
+- [Requirements](#requirements)
+- [Installation guide](#installation_guide)
+- [Custom C/C++ kernel integration](#custom_kernels)
+  - [Line analysis](#custom_kernel_line)
+  - [Model Order Reduction](#custom_kernel_mor)
+
+<a name="requirements"/>
+
 ## Requirements
 In order to run the tool, the following requirements are needed:
 
@@ -24,6 +33,7 @@ In order to run the tool, the following requirements are needed:
 ### Linux
 1. After the installation of Intel onAPI, try sourcing the top-level `vars.sh` script with `. path/to/intel/oneapi/mkl/latest/env/vars.sh`. This command sets the ONEAPI_ROOT variable.
 
+<a name="installation_guide"/>
 ## Installation Guide (Windows/Linux)
 In order to create the executable for PROTON, the following steps need to be run (provided that the above requirements are met):
 1. Clone/Download this repo. _Note_ that the location of the cloned/downloaded repo is going to be the same as the installation folder
@@ -42,9 +52,11 @@ Analogously for Linux, execute:
 - `./path/to/PROTON/bin/EMtool_MOR` for the MOR C kernel (point analysis)
 
 
+<a name="custom_kernels"/>
 ## Integration of custom C/C++ kernels
 The user has the option to make use of custom C/C++ kernels of his/her choice. For this purpose, one can simply change the executable file (for Windows and/or Linux respectively) in `bin/` folder. 
 
+<a name="custom_kernel_line"/>
 ### Line analysis
 The line analysis C++ kernel calculates the EM diffusion stress using the implementation of the ICCAD2022 paper with title "A Novel Semi-Analytical Approach for Fast Electromigration Stress Analysis in Multi-Segment Interconnects". 
 
@@ -57,7 +69,7 @@ It also receives as input files `B.csv` and `curden.csv` (which are in the same 
 
 *Outputs*: It provides the stress at each discretization point of the line at stores it in the corresponding line's folder inside `output/` with the name `stress_<simulation_time>.txt`. For example, if we run the analytical function for the line above at t=100s, then the stress results will be in `project_folder/output/M5_n0_3/Al_378.0_1.0/stress_100.txt`.
 
-
+<a name="custom_kernel_mor"/>
 ### MOR for point analysis
 The Model Order Reduction (MOR) C++ kernel implements a Moment-Matching (MM) Extended Krylov Subspace (EKS) method, so that the transient analysis for all points on the line speed up.
 
