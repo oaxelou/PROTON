@@ -1,4 +1,5 @@
-# PROTON
+# PROTON <img src="https://github.com/oaxelou/PROTON/assets/33567827/25d057f8-6023-45e1-b6ce-eae1483ff00b" width="100" height="100">
+
 A Python Framework for Physics-Based Electromigration Assessment on Contemporary VLSI Power Grids
 
 PROTON is an _open-source_ cross-platform EDA tool for  Electromigration (EM) assessment in contemporary VLSI power grids. The main key points of this tool are:
@@ -6,12 +7,18 @@ PROTON is an _open-source_ cross-platform EDA tool for  Electromigration (EM) as
 - It employs a complete set of accurate numerical and analytical techniques, that can significantly reduce the simulation complexity of large-scale EM problems. In particular, the analytical solution used for the line analysis is exact for the chosen spatial discretization guaranteeing a perfectly accurate and robust solution.
 - It is built with an easy-to-use interface, that allows the user to explore different EM stress scenarios, for multiple time stamps, providing plots for the physical structures of the power grid.
 
+
 ## Table of Contents:
+- [PROTON Flowchart](#flow_chart)
 - [Requirements](#requirements)
 - [Installation guide](#installation_guide)
 - [Custom C/C++ kernel integration](#custom_kernels)
   - [Line analysis](#custom_kernel_line)
   - [Model Order Reduction](#custom_kernel_mor)
+
+<a name="flow_chart"/>
+
+<img width="960" alt="image" src="https://github.com/oaxelou/PROTON/assets/33567827/07edefdd-ea60-4df4-9f00-05d328799701">
 
 <a name="requirements"/>
 
