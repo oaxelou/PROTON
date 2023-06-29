@@ -18,7 +18,9 @@ PROTON is an _open-source_ cross-platform EDA tool for  Electromigration (EM) as
 
 <a name="flow_chart"/>
 
-<img width="960" alt="image" src="https://github.com/oaxelou/PROTON/assets/33567827/07edefdd-ea60-4df4-9f00-05d328799701">
+<p align="center">
+<img width="900" alt="image" src="https://github.com/oaxelou/PROTON/assets/33567827/07edefdd-ea60-4df4-9f00-05d328799701">
+</p>
 
 <a name="requirements"/>
 
