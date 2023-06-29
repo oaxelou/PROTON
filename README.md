@@ -1,4 +1,4 @@
-# PROTON <img src="https://github.com/oaxelou/PROTON/assets/33567827/25d057f8-6023-45e1-b6ce-eae1483ff00b" width="100" height="100">
+# <img src="https://github.com/oaxelou/PROTON/assets/33567827/25d057f8-6023-45e1-b6ce-eae1483ff00b" width="50" height="50"> PROTON 
 
 A Python Framework for Physics-Based Electromigration Assessment on Contemporary VLSI Power Grids
 
