@@ -79,6 +79,7 @@ _Note_: Because of license purposes, our employs the highly-optimized open-sourc
 ([source](https://web.ece.ucsb.edu/~lip/PGBenchmarks/ibmpgbench.html)).
 
 <a name="examples"/>
+
 ## Example Runs (for CLI)
 
 In `path/to/PROTON/examples/` we offer two TCL examples scripts for the CLI version of our tool. It can either be run with two ways:
