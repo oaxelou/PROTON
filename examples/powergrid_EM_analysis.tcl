@@ -18,11 +18,11 @@ parse_powergrid
 # Set technology, temperature, line width
 set_technology CuDD
 set_temperature 378
-set_line_width 1
+set_line_width 0.1
 
 # Complete powergrid EM stress check at 20y (6.38e8s) for a random sample of 100 lines
 # and check for lines that exceed the critical stress of 10KPa
-analyze 6.38e8 --sample 100 --critical 10000
+analyze 6.38e8 --sample 1000 --critical 40e6
 
 # Export stats on the powergrid and EM stress results
 report_powergrid_stats --file C:\Users\olymp\Desktop\powergrid_stats.txt

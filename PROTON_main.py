@@ -682,12 +682,12 @@ def create_main_window(window, PROJECT_NAME, project_type, elapsed_time=None):
 	create_left_frame(h_splitter, right_frame_v_splitter)
 
 	if project_type == "new":
-		message = "Created new project with name " + PROJECT_NAME
+		message = "Created new project with name " + os.path.normcase(PROJECT_NAME)
 		GUI_auxiliary.log_keeper.track_history_messages(message, False)
-		message = f"Parsed spice file with name {GUI_auxiliary.spice_file} in {elapsed_time:.3f} seconds." 
+		message = f"Parsed spice file with name {os.path.normcase(GUI_auxiliary.spice_file)} in {elapsed_time:.3f} seconds." 
 
 	else:
-		message = "Opened the project with name " + PROJECT_NAME
+		message = "Opened the project with name " + os.path.normcase(PROJECT_NAME)
 	GUI_auxiliary.log_keeper.track_history_messages(message, False)
 
 

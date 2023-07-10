@@ -1,0 +1,5 @@
+# Simple line analysis
+C:\Users\olymp\Desktop\EDA_competition\tcl_examples\line_EM_analysis.tcl
+
+# Powergrid analysis
+python C:\Users\olymp\Documents\GitHub\PROTON\PROTON_cli.py powergrid_EM_analysis.tcl

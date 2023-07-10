@@ -16,18 +16,17 @@ set_project_path C:\Users\olymp\Desktop
 set_project_name automated_ibmpg2
 parse_powergrid
 
+# Select line
+select_line M5_n1_1
+
 # Set technology, temperature, width
 set_technology CuDD
 set_temperature 378
-set_line_width 1
-
-# Select line
-select_line M5_n1_1
-# show_lines
+set_line_width 0.1
 
 # Discretize and Perform analysis on selected line
-discretize_line --points 5000
-analyze_line 6.38e8 1e6 30
+discretize_line --points 1000
+analyze_line 6.38e8 1e6 25
 
 # Open GUI to see plot
 g

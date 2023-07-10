@@ -872,14 +872,6 @@ def report_line_stress(line=None, maxstress=None, export_filename=None):
 								for line1 in lines:
 									file_str+=str(i)+" , "+line1
 									i+=1
-								i=0
-								file_str+="Nodes\n"
-								for line1 in lines:
-									file_str+=str(i)+"\n"
-									i=i+1
-								file_str+="Stress\n"
-								for line1 in lines:
-									file_str+=line1
 						except ValueError as e:
 							print("Corrupted stress.txt file.")
 							return 1
@@ -1012,77 +1004,73 @@ def analyze_line_item(item_path, exiting, problematic_lines, problematic_lines_l
 			lengths.append(float(line_components[3]))
 	min_length = min(lengths)
 	
-	if len(lengths) < 150:
-		discr_times = 0
-		while discr_times < 10:
-			# print(f"min_length: {min_length}")
-			# time.sleep(2)
-			set_discr_step(min_length*0.99, True)
-			matrix_formulation_worker = Matrix_Formulation_Class(csv_file=item_path,project_location=directory,sp_step=disc_step,given_disc_point=None,technology=tech,temperature=float(temp),givenWidth=float(width))
-			return_message = matrix_formulation_worker.matrix_formulation()
+	discr_times = 0
+	while discr_times < 10:
+		# print(f"min_length: {min_length}")
+		# time.sleep(2)
+		set_discr_step(min_length*0.99, True)
+		matrix_formulation_worker = Matrix_Formulation_Class(csv_file=item_path,project_location=directory,sp_step=disc_step,given_disc_point=None,technology=tech,temperature=float(temp),givenWidth=float(width))
+		return_message = matrix_formulation_worker.matrix_formulation()
 
-			if "seconds" in return_message:
+		if "seconds" in return_message:
+			break
+		else:
+			print(f"Going to reduce min_length to: {min_length}")
+			min_length = min_length * 0.7
+			if min_length <= 0:
+				print("Discretization cannot be more sparse.")
 				break
-			else:
-				print(f"Going to reduce min_length to: {min_length}")
-				min_length = min_length * 0.7
-				if min_length <= 0:
-					print("Discretization cannot be more sparse.")
-					break
-			discr_times += 1
+		discr_times += 1
 
-		if discr_times < 10 or min_length > 0:
-			# Perform analytical for the selected line
-			# select_line(os.path.splitext(item)[0], True)
+	if discr_times < 10 or min_length > 0:
+		# Perform analytical for the selected line
+		# select_line(os.path.splitext(item)[0], True)
 
+		if exiting.is_set():
+			return 1
+		if analytical(simulation_time, True, os.path.splitext(item)[0]) == 0:
 			if exiting.is_set():
 				return 1
-			if analytical(simulation_time, True, os.path.splitext(item)[0]) == 0:
-				if exiting.is_set():
-					return 1
-				if critical_stress is not None:
-					#  Get results, check if ok, else store it in the problematic_lines
-					line_path = os.path.splitext(item)[0]+"/"+tech+"_"+str(temp)+"_"+str(width)+"/"
-					output_files = os.path.normpath(directory + "/output/"+line_path)
+			if critical_stress is not None:
+				#  Get results, check if ok, else store it in the problematic_lines
+				line_path = os.path.splitext(item)[0]+"/"+tech+"_"+str(temp)+"_"+str(width)+"/"
+				output_files = os.path.normpath(directory + "/output/"+line_path)
 
-					stress_file_pattern = r"stress_([\d.]+)\."
-					lines = []
-					
-					for filename in os.listdir(output_files):
-						if filename.endswith(".txt") and filename.startswith("stress"):
-							match = re.search(stress_file_pattern, filename)
-							if match:
-								number = float(match.group(1))
-								# print(f'Going to check: {number} with {simulation_time}')
-								if float(number) == float(simulation_time):
-									# print("Got in here!")
-									with open(os.path.join(output_files, filename), 'r') as f_stress:
-										lines = f_stress.readlines()
-					
-					# print(f"len(lines): {len(lines)}")
-					if len(lines) == 0:
-						print("The file is empty!")
-						return 1
-					
-					max_stress = float(lines[0])
-					for l in lines:
-						if float(l) > max_stress:
-							max_stress = float(l)
-					
-					if max_stress > critical_stress:
-						# Acquire the lock before modifying the shared dictionary
-						with problematic_lines_lock:
-							problematic_lines[os.path.splitext(item)[0]] = max_stress
-			else:
-				# The line could not be analyzed
-				print(f"{os.path.splitext(item)[0]} The line could not be analyzed")
-				pass
+				stress_file_pattern = r"stress_([\d.]+)\."
+				lines = []
+				
+				for filename in os.listdir(output_files):
+					if filename.endswith(".txt") and filename.startswith("stress"):
+						match = re.search(stress_file_pattern, filename)
+						if match:
+							number = float(match.group(1))
+							# print(f'Going to check: {number} with {simulation_time}')
+							if float(number) == float(simulation_time):
+								# print("Got in here!")
+								with open(os.path.join(output_files, filename), 'r') as f_stress:
+									lines = f_stress.readlines()
+				
+				# print(f"len(lines): {len(lines)}")
+				if len(lines) == 0:
+					print("The file is empty!")
+					return 1
+				
+				max_stress = float(lines[0])
+				for l in lines:
+					if float(l) > max_stress:
+						max_stress = float(l)
+				
+				if max_stress > critical_stress:
+					# Acquire the lock before modifying the shared dictionary
+					with problematic_lines_lock:
+						problematic_lines[os.path.splitext(item)[0]] = max_stress
 		else:
-			print(f"{os.path.splitext(item)[0]} The line was discarded")
+			# The line could not be analyzed
+			print(f"{os.path.splitext(item)[0]} The line could not be analyzed")
 			pass
 	else:
+		print(f"{os.path.splitext(item)[0]} The line was discarded")
 		pass
-		# print(f"Going to discard this large line: {len(lengths)}")
 
 max_stress_loc = None
 def analyze(simulation_time, critical_stress=None, sample_lines=None):
@@ -1153,12 +1141,14 @@ def analyze(simulation_time, critical_stress=None, sample_lines=None):
 			elif os.path.isfile(item_path):
 				all_lines.append(item_path)
 
+	print(f"Total number of lines: {len(all_lines)}")
+	
 	if sample_lines is not None:
 		_sample_lines = int(sample_lines)
 		all_lines = random.sample(all_lines, _sample_lines)
 		lines_num = _sample_lines
+		print(f"Number of samples lines: {lines_num}\n")
 
-	print(f"Total number of lines: {lines_num}")
 	progress_bar = tqdm(total=lines_num, unit=' line')
 
 	problematic_lines = {}  # Global shared dictionary

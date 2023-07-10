@@ -74,16 +74,8 @@ class Spice_Parser_Class(QObject):
       benchmark_name = os.path.splitext(os.path.basename(spice_file))[0]
       if benchmark_name == "ibmpg1":
         DC_analysis_filename = "benchmarks/DC_analyses/DC_analysis_ibmpg1.txt"
-      elif benchmark_name == "ibmpg2" or benchmark_name == "example":
+      elif benchmark_name == "ibmpg2":
         DC_analysis_filename = "benchmarks/DC_analyses/DC_analysis_ibmpg2.txt"
-      elif benchmark_name == "ibmpg3":
-        DC_analysis_filename = "benchmarks/DC_analyses/DC_analysis_ibmpg3.txt"
-      elif benchmark_name == "ibmpg4":
-        DC_analysis_filename = "benchmarks/DC_analyses/DC_analysis_ibmpg4.txt"
-      elif benchmark_name == "ibmpg5":
-        DC_analysis_filename = "benchmarks/DC_analyses/DC_analysis_ibmpg5.txt"
-      elif benchmark_name == "ibmpg6":
-        DC_analysis_filename = "benchmarks/DC_analyses/DC_analysis_ibmpg6.txt"
       else:
         self.return_message.emit(f"There is no DC analysis file for benchmark {benchmark_name}.")
         self.finished.emit()

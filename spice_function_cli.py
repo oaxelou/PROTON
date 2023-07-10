@@ -63,17 +63,9 @@ class Spice_Parser_Class():
     else:
       benchmark_name = os.path.splitext(os.path.basename(spice_file))[0]
       if benchmark_name == "ibmpg1":
-        DC_analysis_filename = "C:/Users/olymp/Documents/GitHub/EM_analysis_tool/benchmarks/DC_analyses/DC_analysis_ibmpg1.txt"
-      elif benchmark_name == "ibmpg2" or benchmark_name == "example":
-        DC_analysis_filename = "C:/Users/olymp/Documents/GitHub/EM_analysis_tool/benchmarks/DC_analyses/DC_analysis_ibmpg2.txt"
-      elif benchmark_name == "ibmpg3":
-        DC_analysis_filename = "C:/Users/olymp/Documents/GitHub/EM_analysis_tool/benchmarks/DC_analyses/DC_analysis_ibmpg3.txt"
-      elif benchmark_name == "ibmpg4":
-        DC_analysis_filename = "C:/Users/olymp/Documents/GitHub/EM_analysis_tool/benchmarks/DC_analyses/DC_analysis_ibmpg4.txt"
-      elif benchmark_name == "ibmpg5":
-        DC_analysis_filename = "C:/Users/olymp/Documents/GitHub/EM_analysis_tool/benchmarks/DC_analyses/DC_analysis_ibmpg5.txt"
-      elif benchmark_name == "ibmpg6":
-        DC_analysis_filename = "C:/Users/olymp/Documents/GitHub/EM_analysis_tool/benchmarks/DC_analyses/DC_analysis_ibmpg6.txt"
+        DC_analysis_filename = "benchmarks/DC_analyses/DC_analysis_ibmpg1.txt"
+      elif benchmark_name == "ibmpg2":
+        DC_analysis_filename = "benchmarks/DC_analyses/DC_analysis_ibmpg2.txt"
       else:
         return(f"There is no DC analysis file for benchmark {benchmark_name}.")
 
@@ -116,7 +108,7 @@ class Spice_Parser_Class():
       return("Corrupted DC analysis currents file.")
     except FileNotFoundError as e:
       # return(1, "DC analysis currents file not found.") 
-      return("DC analysis currents file not found.")
+      return(f"DC analysis currents file {DC_analysis_filename} not found.")
     except Exception as e:
       print(e)
       # return(1, "An error occured while parsing DC analysis currents file.")
