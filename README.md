@@ -12,6 +12,8 @@ PROTON is an _open-source_ cross-platform EDA tool for  Electromigration (EM) as
 - [PROTON Flowchart](#flow_chart)
 - [Requirements](#requirements)
 - [Installation guide](#installation_guide)
+- [How to run](#how_to_run)
+- [Example Runs](#examples)
 - [Custom C/C++ kernel integration](#custom_kernels)
   - [Line analysis](#custom_kernel_line)
   - [Model Order Reduction](#custom_kernel_mor)
@@ -38,7 +40,8 @@ In order to run the tool, the following requirements are needed:
 1. For Intel oneAPI, the following paths must be added to the system's PATH environment variables (for `mkl_avx2.1.dll`, `mkl_core.1.dll`, `mkl_def.1.dll`, `mkl_intel_thread.1.dll`, `libiomp5md.lib`):
    - `path/to/oneAPI/Intel/mkl/latest/redist/intel64`
    - `path/to/oneAPI/Intel/compiler/latest/windows/redist/intel64_win/compile`
-
+2. For FFTW library, we have already included it in the Thirdparty folder. In order for the system to link the dll libraries to the PROTON executable, the user needs to add the `./path/to/PROTON/Thirdparty/FFTW/` folder to the environment variables.
+ 
 ### Linux
 1. After the installation of Intel onAPI, try sourcing the top-level `vars.sh` script with `. path/to/intel/oneapi/mkl/latest/env/vars.sh`. This command sets the ONEAPI_ROOT variable.
 
@@ -48,7 +51,7 @@ In order to run the tool, the following requirements are needed:
 In order to create the executable for PROTON, the following steps need to be run (provided that the above requirements are met):
 1. Clone/Download this repo. _Note_ that the location of the cloned/downloaded repo is going to be the same as the installation folder
 2. Double-click on `PROTON_installer.py` or navigate to the folder of the repo and run `python PROTON_installer.py`. The executable is then created at the top level of the repo directory under the name `PROTON.exe` for Windows and `PROTON` for Linux.
-3. The user can create a shortcut to the executable or add the folder to the environment variables (or use the `export` command in `~/.bashrc` for Linux) in order to run it from anywhere in the system
+3. The user can create a shortcut to the executable or add the folder to the environment variables (or use the `export` command in `~/.bashrc` for Linux) in order to run it from anywhere in the system.
 
 
 ### Windows
@@ -60,6 +63,26 @@ In order to check for the dependencies, try executing the C kernels by themselve
 Analogously for Linux, execute:
 - `./path/to/PROTON/bin/EMtool_analytical` for the line analysis C kernel
 - `./path/to/PROTON/bin/EMtool_MOR` for the MOR C kernel (point analysis)
+
+<a name="how_to_run"/>
+
+## How to run
+
+Provided that the necessary libraries are installed on the machine, the user can straight-forwardly run PROTON by typing `python PROTON_main.py` for the graphical interface or `python PROTON_cli.py` for the command-line interface. 
+_Note_ that the same project can be created by either the GUI or the CLI version. This means that a user can create a PROTON project from the GUI and then open and access it from the CLI and vice-versa.
+
+If the user has run the PROTON installer (`python PROTON_installer.py`) and the PROTON executable has been created at `./path/to/PROTON/`, then the user can run our tool by double-clicking on the executable.
+
+### Disclaimer Notice
+_Note_: Because of license purposes, our employs the highly-optimized open-source circuit simulator proposed by Christos Kalonakis (`https://github.com/hrkalona/CircuitSimulation`) which unfortunately is only developed for Linux platforms. For this reason, if a user wished to run our tool on Windows, we have in `path/to/PROTON/benchmarks/DC_analyses/` the pre-calculated DC currents for IBMPG1 and IBMPG2 benchmarks
+([source](https://web.ece.ucsb.edu/~lip/PGBenchmarks/ibmpgbench.html)).
+
+<a name="examples"/>
+## Example Runs (for CLI)
+
+In `path/to/PROTON/examples/` we offer two TCL examples scripts for the CLI version of our tool. It can either be run with two ways:
+1. Through a command line at `path/to/PROTON/` by typing `python PROTON_cli.py examples/line_EM_analysis.tcl` or
+2. By double-clicking on the `path/to/PROTON/PROTON_cli.py` and typing `source examples/line_EM_analysis.tcl`
 
 
 <a name="custom_kernels"/>
