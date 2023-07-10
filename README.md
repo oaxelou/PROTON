@@ -73,7 +73,8 @@ _Note_ that the same project can be created by either the GUI or the CLI version
 
 If the user has run the PROTON installer (`python PROTON_installer.py`) and the PROTON executable has been created at `./path/to/PROTON/`, then the user can run our tool by double-clicking on the executable.
 
-### Disclaimer Notice
+### Note
+
 _Note_: Because of license purposes, our employs the highly-optimized open-source circuit simulator proposed by Christos Kalonakis (`https://github.com/hrkalona/CircuitSimulation`) which unfortunately is only developed for Linux platforms. For this reason, if a user wished to run our tool on Windows, we have in `path/to/PROTON/benchmarks/DC_analyses/` the pre-calculated DC currents for IBMPG1 and IBMPG2 benchmarks
 ([source](https://web.ece.ucsb.edu/~lip/PGBenchmarks/ibmpgbench.html)).
 
