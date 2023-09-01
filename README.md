@@ -31,7 +31,7 @@ In order to run the tool, the following requirements are needed:
 
 ### Cross-platform (Windows/Linux):
 1. The python packages in `requirements.txt`. In order to install them in bulk, execute `pip install -r requirements.txt`.
-2. Given `$installation_dir` the installation directory, run `python $installation_dir/simulation/setup.py`.
+2. For the installation of the Python numerical simulation: Given `$installation_dir` the installation directory, follow the installation steps in `$installation_dir/simulation/readme.py`.
 3. Install the Eigen library from [Eigen download page](http://eigen.tuxfamily.org/index.php?title=Main_Page#Download).
 4. Install FFTW library from [FFTW download page](https://fftw.org/download.html).
 5. Install Intel oneAPI (for MKL) from [Intel oneAPI download page](https://www.intel.com/content/www/us/en/developer/articles/guide/installation-guide-for-oneapi-toolkits.html).
