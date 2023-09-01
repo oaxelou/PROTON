@@ -10,7 +10,7 @@
 #Pandas: pip install pandas
 #Dask:pip install dask
 #Matplotlib:pip install matplotlib
-#Scikit.sparse: navigate to the path/to/RΟΜ_generation_tool/simulation/scikit.sparse-master and install Scikit.sparse by running the python script setup.py:
+#Scikit.sparse: navigate to the path/to/PROTON/simulation/scikit.sparse-master and install Scikit.sparse by running the python script setup.py:
 #>python setup.py install
 #The above command, requires the python's version to be ">=3.6, <3.10", the "numpy>=1.13.3" and the "scipy>=0.19".
 
