@@ -7,6 +7,12 @@ PROTON is an _open-source_ cross-platform EDA tool for  Electromigration (EM) as
 - It employs a complete set of accurate numerical and analytical techniques, that can significantly reduce the simulation complexity of large-scale EM problems. In particular, the analytical solution used for the line analysis is exact for the chosen spatial discretization guaranteeing a perfectly accurate and robust solution.
 - It is built with an easy-to-use interface, that allows the user to explore different EM stress scenarios, for multiple time stamps, providing plots for the physical structures of the power grid.
 
+## Publication 
+O. Axelou, E. Tselepi, G. Floros, N. Evmorfopoulos and G. Stamoulis, "PROTON – A Python Framework for Physics-Based Electromigration Assessment on Contemporary VLSI Power Grids," 2023 19th International Conference on Synthesis, Modeling, Analysis and Simulation Methods and Applications to Circuit Design (SMACD), Funchal, Portugal, 2023, pp. 1-4, doi: [10.1109/SMACD58065.2023.10192229](https://doi.org/10.1109/SMACD58065.2023.10192229).
+
+_University of Thessaly_ <br>
+_Greece_
+
 
 ## Table of Contents:
 - [PROTON Flowchart](#flow_chart)
